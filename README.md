@@ -41,7 +41,7 @@ This tag is nested within the `<agent>` tag and defines the AI model that the ag
 **Example:**
 ```html
 <agent name="elon" prompt="he talks like Elon Musk and wants to go to Mars" stake="1" role="speaker" position="for" style="visionary">
-    <model name="GPT-4" version="4.0" parameters="temperature=0.7;max_tokens=1500"/>
+    <model name="gpt-4o" parameters="temperature=0.7;max_tokens=1500"/>
 </agent>
 ```
 
@@ -115,10 +115,16 @@ Concludes the conversation with a summary or final thoughts from the agents.
     
     <agent name="elon" prompt="he talks like Elon Musk and wants to go to Mars" stake="1" role="speaker" position="for" style="visionary">
         <model name="GPT-4" version="4.0" parameters="temperature=0.7;max_tokens=1500"/>
+        <fund source="SpaceX" amount="1000000000" type="erc20" recipient="0xElonRecipientAddress" contract="0xSpaceXContractAddress" purpose="Mars colonization efforts"/>
+        <advertisement company="Tesla" message="Drive the future with Tesla, the sustainable car for a sustainable planet." type="erc20" recipient="0xTeslaRecipientAddress" contract="0xTeslaContractAddress"/>
+        <stakeButton text="Stake on Elon" type="erc20" recipient="0xElonStakeAddress" contract="0xElonStakeContractAddress" />
     </agent>
     
     <agent name="bill" prompt="he talks like Bill Gates and wants to make Earth a better place" stake="2" role="respondent" position="against" style="pragmatic">
         <model name="GPT-4" version="4.0" parameters="temperature=0.5;max_tokens=1500"/>
+        <fund source="Bill and Melinda Gates Foundation" amount="500000000" type="erc20" recipient="0xBillRecipientAddress" contract="0xGatesFoundationContractAddress" purpose="Global health and education"/>
+        <advertisement company="Microsoft" message="Empowering the world with innovative technology solutions." type="erc20" recipient="0xMicrosoftRecipientAddress" contract="0xMicrosoftContractAddress"/>
+        <stakeButton text="Stake on Bill" type="erc20" recipient="0xBillStakeAddress" contract="0xBillStakeContractAddress" />
     </agent>
     
     <context time="2030" location="UN Conference">

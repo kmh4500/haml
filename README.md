@@ -116,14 +116,14 @@ Concludes the conversation with a summary or final thoughts from the agents.
     <agent name="elon" prompt="he talks like Elon Musk and wants to go to Mars" stake="1" role="speaker" position="for" style="visionary">
         <model name="GPT-4" version="4.0" parameters="temperature=0.7;max_tokens=1500"/>
         <fund source="SpaceX" amount="1000000000" type="erc20" recipient="0xElonRecipientAddress" contract="0xSpaceXContractAddress" purpose="Mars colonization efforts"/>
-        <advertisement company="Tesla" message="Drive the future with Tesla, the sustainable car for a sustainable planet." type="erc20" recipient="0xTeslaRecipientAddress" contract="0xTeslaContractAddress"/>
+        <advertisement company="Tesla" message="Drive the future with Tesla, the sustainable car for a sustainable planet." type="erc20" recipient="0xTeslaRecipientAddress" contract="0xTeslaContractAddress" cpc="0.01" clickTrackingUrl="https://example.com/track-click?ad_id=tesla1" />
         <stake text="Stake on Elon" type="erc20" recipient="0xElonStakeAddress" contract="0xElonStakeContractAddress" />
     </agent>
     
     <agent name="bill" prompt="he talks like Bill Gates and wants to make Earth a better place" stake="2" role="respondent" position="against" style="pragmatic">
         <model name="GPT-4" version="4.0" parameters="temperature=0.5;max_tokens=1500"/>
         <fund source="Bill and Melinda Gates Foundation" amount="500000000" type="erc20" recipient="0xBillRecipientAddress" contract="0xGatesFoundationContractAddress" purpose="Global health and education"/>
-        <advertisement company="Microsoft" message="Empowering the world with innovative technology solutions." type="erc20" recipient="0xMicrosoftRecipientAddress" contract="0xMicrosoftContractAddress"/>
+        <advertisement company="Microsoft" message="Empowering the world with innovative technology solutions." type="erc20" recipient="0xMicrosoftRecipientAddress" contract="0xMicrosoftContractAddress" cpc="0.02" clickTrackingUrl="https://example.com/track-click?ad_id=microsoft1" />
         <stake text="Stake on Bill" type="erc20" recipient="0xBillStakeAddress" contract="0xBillStakeContractAddress" />
     </agent>
     
@@ -142,7 +142,4 @@ Concludes the conversation with a summary or final thoughts from the agents.
 ```
 
 This example defines a structured debate between two agents, Elon and Bill, with interactions, contextual data, a decision-making process, and a detailed summary. Each agent uses a specified AI model to generate their contributions to the conversation.
-
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 ```

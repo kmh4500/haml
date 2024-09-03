@@ -101,6 +101,8 @@ This tag is nested within the `<agent>` tag and defines the AI model that the ag
 - `name`: (Required) The name of the AI model (e.g., "GPT-4", "stable-diffusion-3-medium", "CustomModelV2").
 - `version`: (Optional) The version of the AI model.
 - `parameters`: (Optional) Key parameters for the model, such as temperature, max tokens, sampling steps, guidance scale, etc.
+- `account`: (Required) The blockchain address where cloud fees will be deposited.
+- `network`: (Required) The blockchain network on which the model serves, such as "ainetwork", etc.
 
 ### Text-Based Models:
 For text-based AI models like GPT-4, the parameters control how the model generates text. Typical parameters include:
@@ -113,7 +115,7 @@ For text-based AI models like GPT-4, the parameters control how the model genera
 **Example for Text-Based Model:**
 ```html
 <agent name="elon" prompt="he talks like Elon Musk and wants to go to Mars" stake="1" role="speaker" position="for" style="visionary">
-    <model name="GPT-4" version="4.0" parameters="temperature=0.7;max_tokens=1500"/>
+   <model name="GPT-4" version="4.0" parameters="temperature=0.7;max_tokens=1500" network="ainetwork" account="0xModelCloudFeeAddress"/>
 </agent>
 ```
 
@@ -127,7 +129,7 @@ For image generation models like `stable-diffusion-3-medium`, the parameters def
 **Example for Image-Based Model:**
 ```html
 <agent name="elon" prompt="he wants to visualize the Martian landscape with futuristic colonies" stake="1" role="artist" position="for" style="futuristic">
-    <model name="stable-diffusion-3-medium" version="1.5" parameters="sampling_steps=50;guidance_scale=7.5;seed=42"/>
+   <model name="stable-diffusion-3-medium" version="1.5" parameters="sampling_steps=50;guidance_scale=7.5" network="ethereum" account="0xModelCloudFeeAddress"/>
 </agent>
 ```
 
@@ -149,10 +151,11 @@ Defines an advertisement within an agent's conversation turn. The advertisement 
 - `actionTrackingUrl`: (Optional) The URL used to track specific actions (for CPA model) for the advertisement.
 - `adsenseClientId`: (Optional) The AdSense client ID associated with the account.
 - `adsenseAdSlot`: (Optional) The AdSense ad slot ID for the specific ad unit.
+- `network`: (Required) The blockchain network on which the advertising occurs, such as "ethereum", "ainetwork", etc.
 
 **Example for Blockchain-Based Advertisement:**
 ```html
-<advertisement company="Tesla" message="Drive the future with Tesla, the sustainable car for a sustainable planet." type="erc20" recipient="0xTeslaRecipientAddress" contract="0xTeslaContractAddress" cpc="0.01" cpa="0.50" cpm="5.00" flatFee="100" duration="7d" clickTrackingUrl="https://example.com/track-click?ad_id=tesla1" actionTrackingUrl="https://example.com/track-action?ad_id=tesla1" />
+<advertisement company="Tesla" message="Drive the future with Tesla, the sustainable car for a sustainable planet." type="erc20" recipient="0xTeslaRecipientAddress" contract="0xTeslaContractAddress" cpc="0.01" cpa="0.50" cpm="5.00" flatFee="100" duration="7d" clickTrackingUrl="https://example.com/track-click?ad_id=tesla1" actionTrackingUrl="https://example.com/track-action?ad_id=tesla1" network="ethereum" />
 ```
 
 **Example for AdSense Advertisement:**
@@ -182,12 +185,48 @@ Defines a staking mechanism within the conversation where users can stake crypto
 - `type`: (Required) The type of cryptocurrency or token used, such as "erc20".
 - `recipient`: (Required) The blockchain address where the stakes will be sent.
 - `contract`: (Required) The smart contract address associated with the staking mechanism.
+- `network`: (Required) The blockchain network on which the staking occurs, such as "ethereum", "ainetwork", etc.
 
 **Example:**
 ```html
-<stake text="Stake on Elon" type="erc20" recipient="0xElonStakeAddress" contract="0xElonStakeContractAddress" />
+<stake text="Stake on Elon" type="erc20" recipient="0xElonStakeAddress" contract="0xElonStakeContractAddress" network="ethereum" />
 ```
-Understood! Here’s the updated guide for the `<interaction>` tag with support for multiple recipients:
+
+### Attribute Details:
+
+- **`text`** (Required):
+  - The label or call to action that encourages users to stake on the specified agent.
+  - Example: `"Stake on Elon"` invites users to place their stakes on the agent named "Elon".
+
+- **`type`** (Required):
+  - Specifies the type of cryptocurrency or token used for staking.
+  - Example: `type="erc20"` indicates that the stake will be made using an ERC-20 token.
+
+- **`recipient`** (Required):
+  - The blockchain address where the stakes will be sent.
+  - Example: `recipient="0xElonStakeAddress"` defines the recipient address for the stakes.
+
+- **`contract`** (Required):
+  - The smart contract address associated with the staking mechanism.
+  - Example: `contract="0xElonStakeContractAddress"` specifies the smart contract handling the staking.
+
+- **`network`** (Required):
+  - The blockchain network on which the staking transaction will occur.
+  - Examples: 
+    - `"ethereum"`: Staking occurs on the Ethereum blockchain.
+    - `"ainetwork"`: Staking occurs on the AI Network blockchain.
+
+### Example Usage Scenarios:
+
+1. **Staking on Ethereum**:
+   ```html
+   <stake text="Stake on Elon" type="erc20" recipient="0xElonStakeAddress" contract="0xElonStakeContractAddress" network="ethereum" />
+   ```
+
+2. **Staking on AI Network**:
+   ```html
+   <stake text="Stake on Bill" type="erc20" recipient="0xBillStakeAddress" contract="0xBillStakeContractAddress" network="ainetwork" />
+   ```
 
 ### 7. `<interaction>`
 Defines specific interactions between agents or between a user and agents during the conversation. The interaction can be directed to one or multiple agents and can handle both text and image inputs or outputs.
@@ -268,10 +307,11 @@ Defines a point in the conversation where agents must reach a decision or consen
 **Attributes:**
 - `method`: (Required) The method of decision-making, such as "vote", "consensus", "random".
 - `outcome`: (Optional) Specifies the desired outcome or goal.
+- `network`: (Required) The blockchain network on which the decision is made, such as "ethereum", "ainetwork", etc.
 
 **Example:**
 ```html
-<decision method="vote" outcome="should humanity prioritize Mars or Earth?"/>
+<decision method="vote" outcome="should humanity prioritize Mars or Earth?" network="ethereum" />
 ```
 
 ### 11. `<summary>`

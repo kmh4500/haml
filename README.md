@@ -139,23 +139,48 @@ For image generation models like `stable-diffusion-3-medium`, the parameters def
 - **Image Models (e.g., stable-diffusion-3-medium)**: Use parameters like `sampling_steps`, `guidance_scale`, and `seed` to fine-tune the visual output.
 
 These tags and parameters allow you to tailor the AI agent's behavior, whether generating text or images, according to your specific needs.
-
 ### 5. `<advertisement>`
-Defines an advertisement within an agent's conversation turn. The advertisement can be associated with a cost-per-click (CPC) model and is linked to a blockchain smart contract for payments.
+Defines an advertisement within an agent's conversation turn. The advertisement can be associated with various payment models and is linked to a blockchain smart contract for transactions. It also supports integration with traditional ad networks like AdSense.
 
 **Attributes:**
 - `company`: (Required) The name of the company placing the advertisement.
 - `message`: (Required) The message or slogan of the advertisement.
-- `type`: (Required) The type of cryptocurrency or token used, such as "erc20".
-- `recipient`: (Required) The blockchain address where payments or interactions will be sent.
-- `contract`: (Required) The smart contract address associated with the advertisement.
+- `type`: (Required) The type of cryptocurrency or token used, such as "erc20". For AdSense, this can be left as "adsense".
+- `recipient`: (Required) The blockchain address where payments or interactions will be sent. For AdSense, this can be an account identifier.
+- `contract`: (Required) The smart contract address associated with the advertisement. Not required for AdSense.
 - `cpc`: (Optional) The cost-per-click amount that the advertiser will pay for each click.
+- `cpa`: (Optional) Cost-per-acquisition, where the advertiser pays for each specified action, such as a sale or sign-up.
+- `cpm`: (Optional) Cost-per-mille, where the advertiser pays for every thousand impressions of the advertisement.
+- `flatFee`: (Optional) A fixed fee that the advertiser pays for running the advertisement, regardless of clicks, impressions, or actions.
+- `duration`: (Optional) The time period during which the advertisement will be active.
 - `clickTrackingUrl`: (Optional) The URL used to track clicks for the advertisement.
+- `actionTrackingUrl`: (Optional) The URL used to track specific actions (for CPA model) for the advertisement.
+- `adsenseClientId`: (Optional) The AdSense client ID associated with the account.
+- `adsenseAdSlot`: (Optional) The AdSense ad slot ID for the specific ad unit.
 
-**Example:**
+**Example for Blockchain-Based Advertisement:**
 ```html
-<advertisement company="Tesla" message="Drive the future with Tesla, the sustainable car for a sustainable planet." type="erc20" recipient="0xTeslaRecipientAddress" contract="0xTeslaContractAddress" cpc="0.01" clickTrackingUrl="https://example.com/track-click?ad_id=tesla1" />
+<advertisement company="Tesla" message="Drive the future with Tesla, the sustainable car for a sustainable planet." type="erc20" recipient="0xTeslaRecipientAddress" contract="0xTeslaContractAddress" cpc="0.01" cpa="0.50" cpm="5.00" flatFee="100" duration="7d" clickTrackingUrl="https://example.com/track-click?ad_id=tesla1" actionTrackingUrl="https://example.com/track-action?ad_id=tesla1" />
 ```
+
+**Example for AdSense Advertisement:**
+```html
+<advertisement company="Google" message="Discover the latest trends with Google." type="adsense" recipient="pub-1234567890" adsenseClientId="ca-pub-1234567890" adsenseAdSlot="1234567890" duration="30d" />
+```
+
+### Attribute Details:
+
+- **`type`** (Required):
+  - For blockchain-based ads, this would be the cryptocurrency or token type (e.g., "erc20").
+  - For AdSense, this should be set to "adsense".
+
+- **`adsenseClientId`** (Optional for AdSense):
+  - The AdSense client ID associated with the account.
+  - Example: `adsenseClientId="ca-pub-1234567890"`.
+
+- **`adsenseAdSlot`** (Optional for AdSense):
+  - The specific ad slot ID for the AdSense ad unit.
+  - Example: `adsenseAdSlot="1234567890"`.
 
 ### 6. `<stake>`
 Defines a staking mechanism within the conversation where users can stake cryptocurrency on a particular agent. This can be used to express support or confidence in the agent’s position.

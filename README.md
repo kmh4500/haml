@@ -76,9 +76,6 @@ Defines the overall structure of the article, including the type of article, the
    <article type="editorial" keyword="the impact of AI on jobs" format="opinion" tone="persuasive">
    ```
 
-### Summary:
-The `<article>` tag provides a flexible framework for generating various types of written content, from casual blog posts to formal news articles. By adjusting the attributes, you can tailor the structure, focus, and tone of the content to suit different audiences and purposes.
-
 ### 3. `<agent>`
 Defines each participant (agent) in the conversation, including their name, behavior, stake, and the model they will use.
 
@@ -134,11 +131,6 @@ For image generation models like `stable-diffusion-3-medium`, the parameters def
 </agent>
 ```
 
-### Summary:
-- **Text Models (e.g., GPT-4)**: Focus on parameters like `temperature`, `max_tokens`, and `top_p` to control the style and content of the text output.
-- **Image Models (e.g., stable-diffusion-3-medium)**: Use parameters like `sampling_steps`, `guidance_scale`, and `seed` to fine-tune the visual output.
-
-These tags and parameters allow you to tailor the AI agent's behavior, whether generating text or images, according to your specific needs.
 ### 5. `<advertisement>`
 Defines an advertisement within an agent's conversation turn. The advertisement can be associated with various payment models and is linked to a blockchain smart contract for transactions. It also supports integration with traditional ad networks like AdSense.
 

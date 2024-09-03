@@ -187,19 +187,53 @@ Defines a staking mechanism within the conversation where users can stake crypto
 ```html
 <stake text="Stake on Elon" type="erc20" recipient="0xElonStakeAddress" contract="0xElonStakeContractAddress" />
 ```
+Understood! Here’s the updated guide for the `<interaction>` tag with support for multiple recipients:
 
 ### 7. `<interaction>`
-Defines specific interactions between agents during the conversation, such as questions, challenges, or support.
+Defines specific interactions between agents or between a user and agents during the conversation. The interaction can be directed to one or multiple agents and can handle both text and image inputs or outputs.
 
 **Attributes:**
-- `type`: (Required) The type of interaction, such as "question", "challenge", "support".
-- `from`: (Required) The name of the agent initiating the interaction.
-- `to`: (Required) The name of the agent receiving the interaction.
+- `type`: (Required) The type of interaction, such as "question", "challenge", "support", "userInput".
+- `from`: (Required) The name of the agent or "user" initiating the interaction.
+- `to`: (Required) The name of the agent(s) receiving the interaction. Multiple agents can be specified by separating their names with commas.
+- `contentType`: (Optional) Specifies the content type of the interaction, such as "text", "image", or "both". Default is "text".
 
-**Example:**
-```html
-<interaction type="question" from="bill" to="elon"/>
-```
+### Attribute Details:
+
+- **`type`** (Required):
+  - Specifies the type of interaction.
+  - Examples:
+    - `"question"`: One agent asks a question to another.
+    - `"challenge"`: One agent challenges another's statement or argument.
+    - `"support"`: One agent supports or agrees with another.
+    - `"userInput"`: Captures input from the user, which is directed to an agent.
+
+- **`from`** (Required):
+  - The name of the agent or "user" who initiates the interaction.
+  - Example: `from="user"` for interactions where the user inputs data.
+
+- **`to`** (Required):
+  - The name of the agent(s) receiving the interaction. Multiple agents can be specified by separating their names with commas.
+  - Example: `to="elon,bill"` for interactions directed at both "elon" and "bill".
+
+- **`contentType`** (Optional):
+  - Specifies the type of content in the interaction.
+  - Examples:
+    - `"text"`: The interaction involves textual content.
+    - `"image"`: The interaction involves image content.
+    - `"both"`: The interaction involves both text and image content.
+
+### Example Usage Scenarios:
+
+1. **Single Agent-to-Agent Question (Text)**:
+   ```html
+   <interaction type="question" from="bill" to="elon" contentType="text"/>
+   ```
+
+2. **User Input to Multiple Agents (Text)**:
+   ```html
+   <interaction type="userInput" from="user" to="elon,bill" contentType="text"/>
+   ```
 
 ### 8. `<context>`
 Provides additional background or context for the conversation, such as setting, relevant data, or historical events.

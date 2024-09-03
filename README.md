@@ -1,3 +1,6 @@
+Certainly! Below is the updated `README.md` with descriptions for the `stake` and `advertisement` tags formatted in Markdown.
+
+```markdown
 # Hyper Agent Markup Language (HAML) - README
 
 ## Overview
@@ -30,6 +33,13 @@ Defines each participant (agent) in the conversation, including their name, beha
 - `position`: (Optional) The agent’s stance on the topic, such as "for" or "against".
 - `style`: (Optional) Defines the speaking style, e.g., "technical", "casual", "persuasive".
 
+**Example:**
+```html
+<agent name="elon" prompt="he talks like Elon Musk and wants to go to Mars" stake="1" role="speaker" position="for" style="visionary">
+    <model name="GPT-4" version="4.0" parameters="temperature=0.7;max_tokens=1500"/>
+</agent>
+```
+
 ### 3. `<model>`
 This tag is nested within the `<agent>` tag and defines the AI model that the agent will use to generate their part of the conversation.
 
@@ -41,11 +51,42 @@ This tag is nested within the `<agent>` tag and defines the AI model that the ag
 **Example:**
 ```html
 <agent name="elon" prompt="he talks like Elon Musk and wants to go to Mars" stake="1" role="speaker" position="for" style="visionary">
-    <model name="gpt-4o" parameters="temperature=0.7;max_tokens=1500"/>
+    <model name="GPT-4" version="4.0" parameters="temperature=0.7;max_tokens=1500"/>
 </agent>
 ```
 
-### 4. `<interaction>`
+### 4. `<advertisement>`
+Defines an advertisement within an agent's conversation turn. The advertisement can be associated with a cost-per-click (CPC) model and is linked to a blockchain smart contract for payments.
+
+**Attributes:**
+- `company`: (Required) The name of the company placing the advertisement.
+- `message`: (Required) The message or slogan of the advertisement.
+- `type`: (Required) The type of cryptocurrency or token used, such as "erc20".
+- `recipient`: (Required) The blockchain address where payments or interactions will be sent.
+- `contract`: (Required) The smart contract address associated with the advertisement.
+- `cpc`: (Optional) The cost-per-click amount that the advertiser will pay for each click.
+- `clickTrackingUrl`: (Optional) The URL used to track clicks for the advertisement.
+
+**Example:**
+```html
+<advertisement company="Tesla" message="Drive the future with Tesla, the sustainable car for a sustainable planet." type="erc20" recipient="0xTeslaRecipientAddress" contract="0xTeslaContractAddress" cpc="0.01" clickTrackingUrl="https://example.com/track-click?ad_id=tesla1" />
+```
+
+### 5. `<stake>`
+Defines a staking mechanism within the conversation where users can stake cryptocurrency on a particular agent. This can be used to express support or confidence in the agent’s position.
+
+**Attributes:**
+- `text`: (Required) The label or call to action for the staking opportunity.
+- `type`: (Required) The type of cryptocurrency or token used, such as "erc20".
+- `recipient`: (Required) The blockchain address where the stakes will be sent.
+- `contract`: (Required) The smart contract address associated with the staking mechanism.
+
+**Example:**
+```html
+<stake text="Stake on Elon" type="erc20" recipient="0xElonStakeAddress" contract="0xElonStakeContractAddress" />
+```
+
+### 6. `<interaction>`
 Defines specific interactions between agents during the conversation, such as questions, challenges, or support.
 
 **Attributes:**
@@ -58,7 +99,7 @@ Defines specific interactions between agents during the conversation, such as qu
 <interaction type="question" from="bill" to="elon"/>
 ```
 
-### 5. `<context>`
+### 7. `<context>`
 Provides additional background or context for the conversation, such as setting, relevant data, or historical events.
 
 **Attributes:**
@@ -72,7 +113,7 @@ Provides additional background or context for the conversation, such as setting,
 </context>
 ```
 
-### 6. `<data>`
+### 8. `<data>`
 Embeds or references external data that agents can use to support their arguments.
 
 **Attributes:**
@@ -85,7 +126,7 @@ Embeds or references external data that agents can use to support their argument
 <data source="UN" type="policy" url="https://un.org/sustainable-development-goals"/>
 ```
 
-### 7. `<decision>`
+### 9. `<decision>`
 Defines a point in the conversation where agents must reach a decision or consensus.
 
 **Attributes:**
@@ -97,7 +138,7 @@ Defines a point in the conversation where agents must reach a decision or consen
 <decision method="vote" outcome="should humanity prioritize Mars or Earth?"/>
 ```
 
-### 8. `<summary>`
+### 10. `<summary>`
 Concludes the conversation with a summary or final thoughts from the agents.
 
 **Attributes:**

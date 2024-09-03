@@ -19,7 +19,67 @@ Defines the overall structure of the conversation, including the number of round
 <conversation round="10" keyword="why people should go to Mars" format="debate" mood="serious">
 ```
 
-### 2. `<agent>`
+### 2. `<article>`
+Defines the overall structure of the article, including the type of article, the main topic, and the tone.
+
+**Attributes:**
+- `type`: (Required) The type of article, such as "blog", "news", "editorial", "review", etc.
+- `keyword`: (Optional) The main topic or focus of the article.
+- `format`: (Optional) Specifies the structure or format of the article, such as "listicle", "opinion", "how-to", etc.
+- `tone`: (Optional) The overall tone of the article, such as "informative", "persuasive", "casual", "formal", etc.
+
+**Example:**
+```html
+<article type="blog" keyword="the benefits of space exploration" format="opinion" tone="informative">
+```
+
+### Attribute Details:
+
+- **`type`**: 
+  - This attribute specifies the category of the article.
+  - Examples: "blog", "news", "editorial", "review", "feature", "how-to".
+
+- **`keyword`**: 
+  - This optional attribute defines the main subject or theme of the article. It helps focus the content on a specific topic.
+  - Example: "renewable energy", "AI in healthcare", "latest smartphone trends".
+
+- **`format`**: 
+  - This optional attribute describes the structure of the article, indicating how the content is presented.
+  - Examples:
+    - "listicle": A list-based article format (e.g., "10 Reasons to Visit Mars").
+    - "opinion": An article expressing a personal viewpoint.
+    - "how-to": Step-by-step guides or instructional articles.
+    - "review": A critical evaluation of a product, service, or experience.
+
+- **`tone`**: 
+  - This optional attribute sets the tone of the article, indicating the writer's style and approach.
+  - Examples: 
+    - "informative": Provides factual and clear information.
+    - "persuasive": Aims to convince the reader of a particular viewpoint.
+    - "casual": A relaxed and informal style.
+    - "formal": A professional and serious approach.
+
+### Example Usage Scenarios:
+
+1. **Blog Post**:
+   ```html
+   <article type="blog" keyword="sustainable living tips" format="listicle" tone="casual">
+   ```
+
+2. **News Article**:
+   ```html
+   <article type="news" keyword="latest space exploration missions" format="feature" tone="informative">
+   ```
+
+3. **Editorial**:
+   ```html
+   <article type="editorial" keyword="the impact of AI on jobs" format="opinion" tone="persuasive">
+   ```
+
+### Summary:
+The `<article>` tag provides a flexible framework for generating various types of written content, from casual blog posts to formal news articles. By adjusting the attributes, you can tailor the structure, focus, and tone of the content to suit different audiences and purposes.
+
+### 3. `<agent>`
 Defines each participant (agent) in the conversation, including their name, behavior, stake, and the model they will use.
 
 **Attributes:**
@@ -37,7 +97,7 @@ Defines each participant (agent) in the conversation, including their name, beha
 </agent>
 ```
 
-### 3. `<model>`
+### 4. `<model>`
 This tag is nested within the `<agent>` tag and defines the AI model that the agent will use to generate their part of the conversation or image. The `<model>` tag can be used for both text-based AI models like GPT-4 and image generation models like Stable Diffusion.
 
 **Attributes:**
@@ -80,7 +140,7 @@ For image generation models like `stable-diffusion-3-medium`, the parameters def
 
 These tags and parameters allow you to tailor the AI agent's behavior, whether generating text or images, according to your specific needs.
 
-### 4. `<advertisement>`
+### 5. `<advertisement>`
 Defines an advertisement within an agent's conversation turn. The advertisement can be associated with a cost-per-click (CPC) model and is linked to a blockchain smart contract for payments.
 
 **Attributes:**
@@ -97,7 +157,7 @@ Defines an advertisement within an agent's conversation turn. The advertisement 
 <advertisement company="Tesla" message="Drive the future with Tesla, the sustainable car for a sustainable planet." type="erc20" recipient="0xTeslaRecipientAddress" contract="0xTeslaContractAddress" cpc="0.01" clickTrackingUrl="https://example.com/track-click?ad_id=tesla1" />
 ```
 
-### 5. `<stake>`
+### 6. `<stake>`
 Defines a staking mechanism within the conversation where users can stake cryptocurrency on a particular agent. This can be used to express support or confidence in the agent’s position.
 
 **Attributes:**
@@ -111,7 +171,7 @@ Defines a staking mechanism within the conversation where users can stake crypto
 <stake text="Stake on Elon" type="erc20" recipient="0xElonStakeAddress" contract="0xElonStakeContractAddress" />
 ```
 
-### 6. `<interaction>`
+### 7. `<interaction>`
 Defines specific interactions between agents during the conversation, such as questions, challenges, or support.
 
 **Attributes:**
@@ -124,7 +184,7 @@ Defines specific interactions between agents during the conversation, such as qu
 <interaction type="question" from="bill" to="elon"/>
 ```
 
-### 7. `<context>`
+### 8. `<context>`
 Provides additional background or context for the conversation, such as setting, relevant data, or historical events.
 
 **Attributes:**
@@ -138,7 +198,7 @@ Provides additional background or context for the conversation, such as setting,
 </context>
 ```
 
-### 8. `<data>`
+### 9. `<data>`
 Embeds or references external data that agents can use to support their arguments.
 
 **Attributes:**
@@ -151,7 +211,7 @@ Embeds or references external data that agents can use to support their argument
 <data source="UN" type="policy" url="https://un.org/sustainable-development-goals"/>
 ```
 
-### 9. `<decision>`
+### 10. `<decision>`
 Defines a point in the conversation where agents must reach a decision or consensus.
 
 **Attributes:**
@@ -163,7 +223,7 @@ Defines a point in the conversation where agents must reach a decision or consen
 <decision method="vote" outcome="should humanity prioritize Mars or Earth?"/>
 ```
 
-### 10. `<summary>`
+### 11. `<summary>`
 Concludes the conversation with a summary or final thoughts from the agents.
 
 **Attributes:**

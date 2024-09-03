@@ -38,19 +38,47 @@ Defines each participant (agent) in the conversation, including their name, beha
 ```
 
 ### 3. `<model>`
-This tag is nested within the `<agent>` tag and defines the AI model that the agent will use to generate their part of the conversation.
+This tag is nested within the `<agent>` tag and defines the AI model that the agent will use to generate their part of the conversation or image. The `<model>` tag can be used for both text-based AI models like GPT-4 and image generation models like Stable Diffusion.
 
 **Attributes:**
-- `name`: (Required) The name of the AI model (e.g., "GPT-4", "BERT", "CustomModelV2").
+- `name`: (Required) The name of the AI model (e.g., "GPT-4", "stable-diffusion-3-medium", "CustomModelV2").
 - `version`: (Optional) The version of the AI model.
-- `parameters`: (Optional) Key parameters for the model, such as temperature, max tokens, etc.
+- `parameters`: (Optional) Key parameters for the model, such as temperature, max tokens, sampling steps, guidance scale, etc.
 
-**Example:**
+### Text-Based Models:
+For text-based AI models like GPT-4, the parameters control how the model generates text. Typical parameters include:
+
+- **`temperature`**: Controls the randomness of the output. A higher value (e.g., 1.0) makes the output more random, while a lower value (e.g., 0.2) makes it more deterministic.
+- **`max_tokens`**: Limits the number of tokens (words or parts of words) in the generated output.
+- **`top_p`**: Controls diversity via nucleus sampling; 0.9 means 90% of the probability mass.
+- **`frequency_penalty`**: Discourages repetition in the text output.
+
+**Example for Text-Based Model:**
 ```html
 <agent name="elon" prompt="he talks like Elon Musk and wants to go to Mars" stake="1" role="speaker" position="for" style="visionary">
     <model name="GPT-4" version="4.0" parameters="temperature=0.7;max_tokens=1500"/>
 </agent>
 ```
+
+### Image-Based Models:
+For image generation models like `stable-diffusion-3-medium`, the parameters define how the image is generated. Common parameters include:
+
+- **`sampling_steps`**: The number of steps the model takes to generate the image. More steps typically improve quality but increase generation time.
+- **`guidance_scale`**: Controls how closely the image should follow the prompt. Higher values make the image more literal to the description.
+- **`seed`**: A random value that can be set to ensure the image is reproducible.
+
+**Example for Image-Based Model:**
+```html
+<agent name="elon" prompt="he wants to visualize the Martian landscape with futuristic colonies" stake="1" role="artist" position="for" style="futuristic">
+    <model name="stable-diffusion-3-medium" version="1.5" parameters="sampling_steps=50;guidance_scale=7.5;seed=42"/>
+</agent>
+```
+
+### Summary:
+- **Text Models (e.g., GPT-4)**: Focus on parameters like `temperature`, `max_tokens`, and `top_p` to control the style and content of the text output.
+- **Image Models (e.g., stable-diffusion-3-medium)**: Use parameters like `sampling_steps`, `guidance_scale`, and `seed` to fine-tune the visual output.
+
+These tags and parameters allow you to tailor the AI agent's behavior, whether generating text or images, according to your specific needs.
 
 ### 4. `<advertisement>`
 Defines an advertisement within an agent's conversation turn. The advertisement can be associated with a cost-per-click (CPC) model and is linked to a blockchain smart contract for payments.
